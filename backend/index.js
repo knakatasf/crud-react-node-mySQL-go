@@ -5,14 +5,14 @@ import cors from "cors"
 const app = express();
 
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "test"
+    host: "database",
+    port: 3306,
+    user: "user",
+    password: "password",
+    database: "db"
 })
 
 app.use(express.json())//return json data using the api server postman
-
 app.use(cors())
 
 app.get("/", (req,res)=>{

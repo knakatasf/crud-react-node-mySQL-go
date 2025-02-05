@@ -10,6 +10,6 @@ COPY . .
 
 RUN chmod -R 777 /app
 
-EXPOSE 8080
+EXPOSE 8800
 
 CMD ["npx", "nodemon", "index.js"]
