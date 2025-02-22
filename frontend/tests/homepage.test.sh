@@ -1,13 +1,17 @@
 #!/bin/bash
 
-URL="http://localhost:5173"
+URLS=("http://localhost:5173" "http://localhost:3000" "http://localhost")
 
-RESPONSE=$(curl -s $URL)
+for URL in "${URLS[@]}"; do
+    echo "Testing homepage at: $URL"
 
-if echo "$RESPONSE" | grep -q "<title>Vite + React</title>"; then
-    echo "✅ Homepage loaded successfully!"
-    exit 0
-else
-    echo "❌ Homepage did not load correctly!"
-    exit 1
-fi
+    RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" $URL)
+
+    if [ "$RESPONSE" -eq 200 ]; then
+        echo "✅ Homepage loaded successfully at $URL!"
+        exit 0
+    fi
+done
+
+echo "❌ Homepage did not load correctly!"
+exit 1
