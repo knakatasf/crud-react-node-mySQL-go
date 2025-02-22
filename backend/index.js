@@ -26,7 +26,7 @@ app.get("/books", (req,res)=>{
           if(err) return res.json(err)
           return res.json(data)
     })
-  })
+})
 
 
   //postman ---> post method
