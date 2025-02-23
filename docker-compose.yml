@@ -42,6 +42,12 @@ services:
       - "./backend:/app"
 #    working_dir: /app
 #    command: ["npx", "nodemon", "index.js"]
+    environment:
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_PORT: ${DATABASE_PORT}
     depends_on:
       database:
         condition: service_healthy
