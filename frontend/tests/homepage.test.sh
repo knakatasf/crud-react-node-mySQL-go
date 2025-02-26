@@ -1,6 +1,6 @@
 #!/bin/bash
 
-URL="http://$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' infra-repo-frontend-1):5173"
+URL="http://$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' infra-repo-frontend-1):80"
 
 RESPONSE=$(curl -s $URL)
 
