@@ -1,11 +1,19 @@
-FROM node:latest
+FROM node:latest AS build
 
 WORKDIR /app
 
+COPY package*.json ./
+
+RUN npm install && npm install -g vite
+
 COPY . .
 
-RUN npm install
 RUN npm run build
 
-CMD ["sleep", "infinity"]
+FROM nginx:latest
 
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
